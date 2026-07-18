@@ -23,6 +23,12 @@ canvas { display:block; }
   width:100%; padding:12px; border-radius:6px; border:1px solid #333c4a;
   background:#11151c; color:#fff; font-size:15px; margin-bottom:15px; outline:none;
 }
+#mapSelect {
+  width:100%; padding:11px; border-radius:6px; border:1px solid #333c4a;
+  background:#11151c; color:#fff; font-size:14px; margin-bottom:8px; outline:none; cursor:pointer;
+}
+.map-note { color:#5c6576; font-size:11px; margin-bottom:15px; text-align:left; }
+
 #playBtn {
   width:100%; padding:14px; border:none; border-radius:6px;
   background:#ff8c00; color:#101010; font-weight:bold; font-size:16px;
@@ -92,3 +98,60 @@ canvas { display:block; }
 #scoreboard table { width:100%; border-collapse:collapse; }
 #scoreboard th { text-align:left; color:#ff8c00; padding-bottom:6px; font-size:12px; }
 #scoreboard td { padding:3px 6px; }
+
+/* ================= СЕНСОРНОЕ УПРАВЛЕНИЕ (мобильные) ================= */
+#touchControls {
+  position:fixed; inset:0; z-index:15; touch-action:none;
+}
+#lookZone {
+  position:absolute; top:0; right:0; width:60%; height:100%;
+  pointer-events:auto;
+}
+#joystickZone {
+  position:absolute; left:0; bottom:0; width:45%; height:55%;
+  pointer-events:auto;
+}
+#joystickBase {
+  position:fixed; width:110px; height:110px; border-radius:50%;
+  background:rgba(255,255,255,0.08); border:2px solid rgba(255,255,255,0.25);
+  display:none; z-index:16;
+}
+#joystickStick {
+  position:absolute; width:50px; height:50px; border-radius:50%;
+  background:rgba(255,140,0,0.55); border:2px solid rgba(255,255,255,0.5);
+  top:30px; left:30px; pointer-events:none;
+}
+#touchButtons {
+  position:absolute; right:18px; bottom:18px; display:flex; align-items:flex-end; gap:14px;
+  pointer-events:auto;
+}
+.touch-btn {
+  border-radius:50%; border:2px solid rgba(255,255,255,0.4);
+  background:rgba(20,24,30,0.55); color:#fff; font-size:20px; font-weight:bold;
+  display:flex; align-items:center; justify-content:center; user-select:none;
+  -webkit-user-select:none; touch-action:none;
+}
+.touch-btn.large { width:82px; height:82px; background:rgba(255,80,50,0.4); border-color:rgba(255,120,90,0.7); font-size:26px; }
+.touch-btn.medium { width:62px; height:62px; margin-bottom:6px; }
+.touch-btn.small { width:46px; height:46px; margin-bottom:60px; font-size:15px; background:rgba(255,255,255,0.12); }
+.touch-btn:active { background:rgba(255,140,0,0.5); }
+
+/* ================= Адаптивность для маленьких экранов ================= */
+@media (max-width: 820px), (pointer: coarse) {
+  .menu-box { padding:28px 26px; width:88vw; max-width:380px; }
+  .menu-box h1 { font-size:24px; letter-spacing:1.5px; }
+  .subtitle { font-size:11px; }
+  .hints { font-size:11px; line-height:1.6; }
+
+  #healthBar, #ammoBar { font-size:18px; bottom:130px; }
+  #healthBar { left:16px; }
+  #ammoBar { right:16px; }
+  #speedBar { display:none; }
+  #killfeed { top:12px; right:12px; }
+  .kill-entry { font-size:11px; padding:5px 9px; }
+  #chatBox { left:16px; bottom:220px; width:60vw; max-width:260px; }
+  #chatInput { font-size:16px; } /* 16px — чтобы iOS не зумил при фокусе */
+  #crosshairLockHint { display:none !important; }
+  #scoreboard { font-size:11px; min-width:220px; padding:10px 14px; }
+}
+
